@@ -1,6 +1,7 @@
 'use strict';
 
-angular.module('kitchensink', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'restangular', 'ui.router'])
+angular.module('deer', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'restangular', 'ui.router']); 
+angular.module('kitchensink', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'restangular', 'ui.router', 'deer'])
   .config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider
       .state('home', {
@@ -8,6 +9,12 @@ angular.module('kitchensink', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize'
         templateUrl: 'app/main/main.html',
         controller: 'MainCtrl'
       });
+	  
+    $stateProvider
+      .state('deer', {
+        url: '/deer',
+        templateUrl: 'app/deer/deer.html'
+      });	  
 
     $urlRouterProvider.otherwise('/');
   })

@@ -1,6 +1,6 @@
 angular.module('deer').factory('deerService',function($http) {
 	var deerService = {
-        read: function( queryString ) {
+        read: function(params) {
 			// https://ajax.googleapis.com/ajax/services/search/images?v=1.0&q=deer%20pictures;
 			console.log('querying');
 			var url = "https://ajax.googleapis.com/ajax/services/search/images";
@@ -11,7 +11,7 @@ angular.module('deer').factory('deerService',function($http) {
 					q: 'deer pictures',
 					v: '1.0',
 					format:'json',
-					start: 0,
+					start: params.start,
 					num: 20
 				}
 			});	

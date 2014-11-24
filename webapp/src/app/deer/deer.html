@@ -1,16 +1,25 @@
 <div class="container" ng-controller="DeerCtrl">
-  <div ng-include="'components/navbar/navbar.html'"></div>
-  <div class="jumbotron text-center">
-    <h1>Let's look at some pictures of deer!</h1>
+	<div ng-include="'components/navbar/navbar.html'"></div>
+	<div class="jumbotron text-center">
+	<h1>Let's look at some pictures of deer!</h1>
 	<button type="button" class="btn btn-primary btn-lg" ng-click="refresh()">Refresh</button>
-  </div>
+	</div>
 
 	<div class="row">
-		<div class="col-sm-6 col-md-3" ng-repeat="deer in deers">
-			<a href="#" class="thumbnail">
-				<img ng-src="{{deer.url}}" alt="{{deer.title}}">
+		<div class="col-sm-6 col-md-3" ng-repeat="deer in deers track by $index">
+			<a>
+				<img class="img-thumbnail" ng-src="{{deer.url}}" alt="{{deer.title}}">
 			</a>
 		</div>
+	</div>
+	
+	<div class="jumbotron text-center">
+		<button type="button" class="btn btn-default" ng-click="previousPage()">
+			<<
+		</button>
+		<button type="button" class="btn btn-default" ng-click="nextPage()">
+			>>
+		</button>
 	</div>
   
   <!--div class="row">

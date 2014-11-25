@@ -10,7 +10,7 @@ angular.module('picture').controller('PictureCtrl',function($scope,pictureServic
 		params.start = $scope.index;
 		pictureService.read(params).
 			success(function(response) {
-				$scope.deers = response.responseData.results;
+				$scope.pictures = response.responseData.results;
 				console.log(response);
 			}).
 			error(function(response) {

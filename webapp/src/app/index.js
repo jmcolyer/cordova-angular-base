@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('deer', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'restangular', 'ui.router']); 
-angular.module('kitchensink', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'restangular', 'ui.router', 'deer'])
+angular.module('picture', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'restangular', 'ui.router']); 
+angular.module('kitchensink', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'restangular', 'ui.router', 'picture'])
   .config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider
       .state('home', {
@@ -11,9 +11,9 @@ angular.module('kitchensink', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize'
       });
 	  
     $stateProvider
-      .state('deer', {
-        url: '/deer',
-        templateUrl: 'app/deer/deer.html'
+      .state('picture', {
+        url: '/picture',
+        templateUrl: 'app/picture/picture.html'
       });	  
 
     $urlRouterProvider.otherwise('/');

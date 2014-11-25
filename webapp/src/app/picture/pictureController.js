@@ -1,12 +1,14 @@
-angular.module('deer').controller('DeerCtrl',function($scope,deerService){
+'use strict';
+
+angular.module('picture').controller('PictureCtrl',function($scope,pictureService){
 
     $scope.read = function() {
-		console.log('Loading Deer Pics');
+		console.log('Loading Pics');
 		// google limits your search so we need to call multiple times
 		var params = {};
 		
 		params.start = $scope.index;
-		deerService.read(params).
+		pictureService.read(params).
 			success(function(response) {
 				$scope.deers = response.responseData.results;
 				console.log(response);

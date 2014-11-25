@@ -14,7 +14,8 @@ angular.module('picture').factory('pictureService',function($http) {
 					v: '1.0',
 					format:'json',
 					start: params.start,
-					num: 20
+					imgsz: 'small'
+					//,rsz: '8'
 				}
 			});	
         }

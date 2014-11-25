@@ -6,11 +6,15 @@ angular.module('picture').controller('PictureCtrl',function($scope,pictureServic
 		console.log('Loading Pics');
 		// google limits your search so we need to call multiple times
 		var params = {};
+				
+		console.log('start index is now -> ' + $scope.start);
 		
-		params.start = $scope.index;
+		params.start = $scope.start;
 		pictureService.read(params).
 			success(function(response) {
+				$scope.responseData = response.responseData;
 				$scope.pictures = response.responseData.results;
+				//$scope.moreResultsUrl;
 				console.log(response);
 			}).
 			error(function(response) {
@@ -22,24 +26,44 @@ angular.module('picture').controller('PictureCtrl',function($scope,pictureServic
 	$scope.refresh = function() {
 		console.log('Refreshing');
 		$scope.read();
-	}
+	};
 	
 	$scope.previousPage = function() {
-		if($scope.index === 0){  // do nothing 
-			return;
-		}
-		$scope.index = $scope.index - 1;
-		console.log('going to previous page ' + $scope.index);
-		$scope.read();
+		$scope.navigatePictures(false);
 	};
 	
 	$scope.nextPage = function() {
-		$scope.index = $scope.index + 1;
-		console.log('going to next page ' + $scope.index);
+		$scope.navigatePictures(true);
+	};
+	
+	$scope.navigatePictures = function(next) {
+		var pages = $scope.responseData.cursor.pages,
+			currentPage = $scope.responseData.cursor.currentPageIndex,
+			pageIdx, i, lastPage;
+		
+		for(i=0; i<pages.length; i++){
+			if(i === currentPage){
+				pageIdx = i;
+			}
+			lastPage = i;
+		}
+
+		console.log(next);
+		console.log(lastPage);
+		if(next){
+			if(pageIdx !== lastPage){
+				$scope.start = pages[pageIdx+1].start;
+			}
+		} else {
+			if(pageIdx !== 0){
+				$scope.start = pages[pageIdx-1].start;
+			}
+		}
+		
 		$scope.read();
-	}
+	};
 	
-	$scope.index = 0;
+	$scope.start = 0;
 	$scope.read();
-	
+		
 });

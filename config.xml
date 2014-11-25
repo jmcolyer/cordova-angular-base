@@ -9,4 +9,14 @@
     </author>
     <content src="index.html" />
     <access origin="*" />
+	<!-- Default application icon -->
+	<icon src="www/assets/images/angular.png" />
+	<!--
+		Default icon should work, but cordova don't overwrite
+		the default on all densities
+	-->
+	<icon src="www/assets/images/angular.png" platform="android" density="ldpi" />
+	<icon src="www/assets/images/angular.png" platform="android" density="mdpi" />
+	<icon src="www/assets/images/angular.png" platform="android" density="hdpi" />
+	<icon src="www/assets/images/angular.png" platform="android" density="xhdpi" />	
 </widget>

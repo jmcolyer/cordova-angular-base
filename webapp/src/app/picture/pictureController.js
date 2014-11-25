@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('picture').controller('PictureCtrl',function($scope,pictureService){
+angular.module('picture').controller('PictureCtrl',function($scope,pictureService, $location, $anchorScroll){
 
     $scope.read = function() {
 		console.log('Loading Pics');
@@ -61,6 +61,12 @@ angular.module('picture').controller('PictureCtrl',function($scope,pictureServic
 		}
 		
 		$scope.read();
+		
+		// the element you wish to scroll to.
+		$location.hash('pic-container');
+
+		// call $anchorScroll()
+		$anchorScroll();
 	};
 	
 	$scope.start = 0;

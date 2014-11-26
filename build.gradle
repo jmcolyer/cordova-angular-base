@@ -1,0 +1,35 @@
+import org.apache.tools.ant.taskdefs.condition.Os
+
+task build(type: GradleBuild){
+	buildFile = 'webapp/build.gradle'
+	tasks = ['npmBuild']
+}
+
+task copyWebApp(type: Copy) {
+    from 'webapp/dist'
+    into 'www'
+}
+
+task cleanAssets(type: Delete) {
+  delete 'www'
+}
+
+task cordovaBuild(type: Exec) {
+  if(Os.isFamily(Os.FAMILY_WINDOWS)) {
+    commandLine 'cmd', '/c', 'cordova', 'run', 'android'
+  } else {
+    commandLine 'cordova', 'build'
+  }
+}
+
+task buildApk(dependsOn: [
+  build,
+  cleanAssets,
+  copyWebApp,
+  cordovaBuild
+])
+
+// ensure the correct order is executed
+cleanAssets.mustRunAfter build
+copyWebApp.mustRunAfter cleanAssets
+cordovaBuild.mustRunAfter copyWebApp

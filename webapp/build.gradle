@@ -1,0 +1,34 @@
+import org.apache.tools.ant.taskdefs.condition.Os
+
+task npmInstall(type:Exec) {
+
+    logging.captureStandardOutput LogLevel.INFO     // be Gradle-like, reduce noisy logging
+    logging.captureStandardError LogLevel.LIFECYCLE // but do show downloads in the log
+
+    inputs.files "package.json", "bower.json"
+    outputs.files "node_modules", "bower_components"
+
+    if(Os.isFamily(Os.FAMILY_WINDOWS)) {
+        commandLine 'cmd', '/c', 'npm', 'install'
+    }
+    else {
+        commandLine 'npm', 'install'
+    }
+}
+
+task npmBuild(type:Exec, dependsOn: npmInstall) {
+
+    //logging.captureStandardOutput LogLevel.INFO
+    //logging.captureStandardError LogLevel.INFO
+
+    inputs.dir "src"
+    inputs.file "gulpfile.js"
+    outputs.dir "dist"
+
+    if(Os.isFamily(Os.FAMILY_WINDOWS)) {
+        commandLine 'cmd', '/c', 'npm', 'run', 'build'
+    }
+    else {
+        commandLine 'npm', 'run', 'build'
+    }
+}

@@ -7,11 +7,12 @@ This project in particular is meant to test out the mobile capabilies.
 ==========================================================================
 
 The android project is ignored..you must run this to build the mobile app.
+Make sure that cordova dependencies such as "ant" are installed.
 
 cordova platform add android
 
 ==========================================================================
-
+DEPRECATED:  This is now included in the gradle build.
 This project is built with npm and bower.  The dependencies aren't checked in.  You'll 
 need to pull them down.
 
@@ -20,7 +21,7 @@ npm install
 bower install
 
 ==========================================================================
-
+DEPRECATED:  This is now included in the gradle build.
 To deploy the application to the Android emulator follow the below steps.
 
 cd webapp
@@ -35,8 +36,8 @@ cordova run android
 
 ==========================================================================
 
-WIP - need to add gradle build that will run the "gulp build" in the 
-webapp directory, copy the webapp/dist directory into the www directory
-and run "cordova run android" (or something similar)
+From the root directory.  Make sure that gradle is in the path.
+
+gradle build
 
 ==========================================================================

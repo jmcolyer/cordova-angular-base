@@ -10,11 +10,12 @@ angular.module('picture').factory('pictureService',function($http) {
 			return $http.jsonp(url, {
 				params: {
 					callback: 'JSON_CALLBACK',
-					q: 'deer pictures',
+					q: params.q,
 					v: '1.0',
 					format:'json',
 					start: params.start,
-					imgsz: 'small'
+					imgsz: 'medium',
+					safe: 'moderate'
 					//,rsz: '8'
 				}
 			});	

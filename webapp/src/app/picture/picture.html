@@ -1,25 +1,23 @@
-<div class="container" ng-controller="PictureCtrl" >
+<div class="container" ng-controller="PictureCtrl">
 	<div ng-include="'components/navbar/navbar.html'"></div>
-	<div class="jumbotron text-center">
-	<h1>Let's look at some pictures!</h1>
-	<button type="button" class="btn btn-primary btn-lg" ng-click="refresh()">Refresh</button>
+	<div class="text-right">
+		<h3>Search for pictures</h3>
+		<td><input type="text" ng-model="params.q" /></td>
+		<button type="button" class="btn btn-primary btn-sm" ng-click="search(params)">Search</button>
 	</div>
+	<br>
 
 	<div class="row" id="pic-container">
 		<div class="col-sm-6 col-md-3" ng-repeat="picture in pictures track by $index">
-			<a>
+			<a>  
 				<img class="img-thumbnail" ng-src="{{picture.url}}" alt="{{picture.title}}">
 			</a>
 		</div>
 	</div>
 	
 	<div class="jumbotron text-center">
-		<button type="button" class="btn btn-default" ng-click="previousPage()">
-			<<
-		</button>
-		<button type="button" class="btn btn-default" ng-click="nextPage()">
-			>>
-		</button>
+		<button type="button" class="btn btn-default glyphicon glyphicon-backward" ng-click="previousPage()"></button>
+		<button type="button" class="btn btn-default glyphicon glyphicon-forward" ng-click="nextPage()"></button>
 	</div>
 
   <hr>

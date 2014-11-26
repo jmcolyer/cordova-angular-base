@@ -4,17 +4,20 @@ angular.module('picture').controller('PictureCtrl',function($scope,pictureServic
 
     $scope.read = function() {
 		console.log('Loading Pics');
-		// google limits your search so we need to call multiple times
 		var params = {};
 				
-		console.log('start index is now -> ' + $scope.start);
-		
+		console.log('start index is now -> ' + $scope.start);				
 		params.start = $scope.start;
+		params.q = 'deer';  // default is deer pics
+		
+		if($scope.params){
+			params.q = $scope.params.q;
+		}
+
 		pictureService.read(params).
 			success(function(response) {
 				$scope.responseData = response.responseData;
 				$scope.pictures = response.responseData.results;
-				//$scope.moreResultsUrl;
 				console.log(response);
 			}).
 			error(function(response) {
@@ -23,8 +26,9 @@ angular.module('picture').controller('PictureCtrl',function($scope,pictureServic
 			});
     };
 	
-	$scope.refresh = function() {
-		console.log('Refreshing');
+	$scope.search = function(searchParams) {
+		$scope.start = 0; // reset start index
+		$scope.params = searchParams;  // set it global to handle paging
 		$scope.read();
 	};
 	
